@@ -3,8 +3,9 @@ cmake_minimum_required(VERSION 3.19.8)
 # Inlcude the pi pico C/C++ SDK
 include(pico_sdk_import.cmake)
 
-project(bare_metal_blink C)
+project(bare_metal_blink C CXX)
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 set(PICO_EXAMPLES_PATH ${PROJECT_SOURCE_DIR})
 
