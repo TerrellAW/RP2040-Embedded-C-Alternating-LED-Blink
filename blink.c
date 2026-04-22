@@ -4,6 +4,8 @@ RP2040 EMBEDDED C ALTERNATING LED BLINKING PROGRAM
 Alternates between blinking the onboard LED at GPIO 25 and the offboard LED at GPIO 0
 */
 
+#include <stdint.h>
+
 // Define macros
 #define RST_CLR		(*(volatile uint32_t *)0x4000f000)	// reset clear value
 #define RST_BASE	(*(volatile uint32_t *)0x4000c000)	// reset base value
@@ -20,15 +22,11 @@ const uint32_t GPIO25_MASK = 1 << 25;
 void rst() {
 
 	// Release IO_BANK0 from reset controller
-	RST_CLR |= 1 << 5; // Clear all bits and set bit 5 to 1
+	RST_CLR = 1 << 5; // Clear all bits and set bit 5 to 1
 
-	while (1) {
-		
-		// Check if bit 5 is not 1
-		if (!(RST_BASE & (1 << 5))) {
-			// Do nothing (Wait)
-		}
-	}
+	/*while (!(RST_BASE & (1 << 5))) {
+		// Do nothing (Wait)
+	}*/
 }
 
 // Set SIO control over GPIO pins 0 and 25
